@@ -22,7 +22,7 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           # Navigate to the application directory, or clone the repository if it doesn't exist
-          if [ ! -d "/home/${{ secrets.EC2_USER }}/my-app" ]; then
+          if [ ! -d "/home/${{ secrets.EC2_USER }}/fruit-app" ]; then
             git clone https://github.com/GeorgeOkarskyi/fruit-jar.git /home/${{ secrets.EC2_USER }}/fruit-app
           fi
           cd /home/${{ secrets.EC2_USER }}/fruit-app
@@ -51,7 +51,7 @@ jobs:
           fi
 
           # Start or restart the application with PM2 (background process manager)
-          pm2 restart "my-app" --name "my-app" -- run start
+          pm2 restart "fruit-app" --name "fruit-app" -- run start
 
           cd .. 
           # Check if nginx is installed; if not, install it
