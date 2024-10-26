@@ -45,6 +45,9 @@ jobs:
           # Install server dependencies
           cd ./server
 
+          # Install server dependencies
+          npm install
+
           # Start the application using PM2 or nohup so it runs in the background and doesn't block the SSH session
           if ! [ -x "$(command -v pm2)" ]; then
             sudo npm install pm2 -g
