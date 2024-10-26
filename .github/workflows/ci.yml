@@ -54,14 +54,14 @@ jobs:
           fi
 
           # Start or restart the application with PM2 (background process manager)
-          pm2 restart "fruit-app" --name "fruit-app" -- run start
+          pm2 describe fruit-app > /dev/null 2>&1 && pm2 restart fruit-app || pm2 start npm --name "fruit-app" -- start
 
           cd .. 
           # Check if nginx is installed; if not, install it
           if ! [ -x "$(command -v nginx)" ]; then
             echo "Nginx not found. Installing Nginx..."
-            sudo yum update -y
-            sudo yum install nginx -y
+            sudo apt update -y
+            sudo apt install nginx -y
             sudo systemctl start nginx
             sudo systemctl enable nginx
           else
@@ -69,7 +69,10 @@ jobs:
           fi
 
           # Move the files to Nginx web root
-          sudo mv /home/${{ secrets.EC2_USER }}/fruit-app/dist/* /usr/share/nginx/html/
+          if [ ! -d /usr/share/nginx/html ]; then
+            sudo mkdir -p /usr/share/nginx/html
+          fi
+          sudo mv /home/${{ secrets.EC2_USER }}/deploy-temp/* /usr/share/nginx/html/
 
           sudo systemctl restart nginx
         EOF
