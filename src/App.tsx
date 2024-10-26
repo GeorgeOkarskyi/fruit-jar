@@ -1,26 +1,27 @@
-import { useSelector } from 'react-redux'
 import './App.css'
-import { IFruitsStore } from './store/fruits/fruits.types'
-import { selectFruits } from './store/fruits/fruits.selectors'
 import { useEffect } from 'react'
 import { setFruitsEpic } from './store/fruits/fruits.epic'
 import { useAppDispatch } from './hooks/useAppDispatch'
+import { FruitsList } from './components/fruits-list/fruits-list'
+import { LoadingPage } from './components/loading-page/loading-page'
+import { useSelector } from 'react-redux'
+import { selectLoading } from './store/ui/ui.selectors'
+import { RootState } from './store'
 
 function App() {
   const dispatch = useAppDispatch();
 
-  useEffect(() => 
-    dispatch(setFruitsEpic())
-  )
+  const loading = useSelector((store: RootState) => selectLoading(store))
 
-  const fruits = useSelector((store: IFruitsStore) => selectFruits(store))
+  useEffect(() => {
+    dispatch(setFruitsEpic())
+  }, [dispatch]);
 
   return (
-    <>
-      {fruits.length && fruits.map((fruit) => {
-        <div>{fruit.name}</div>
-      })}
+    <>    
+      {loading ? <LoadingPage/> : <FruitsList/>}
     </>
+
   )
 }
 

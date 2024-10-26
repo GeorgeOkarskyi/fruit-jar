@@ -1,3 +1,3 @@
-import { IFruitsStore } from "../fruits/fruits.types";
+import { RootState } from "../index";
 
-export const selectFruits = (state: IFruitsStore) => state.fruits;
+export const selectLoading = (state: RootState) => state.ui.isLoading;

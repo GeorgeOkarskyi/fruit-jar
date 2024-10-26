@@ -9,8 +9,6 @@ export const setFruitsEpic = (): AppThunk => async (dispatch) => {
     try {
       const fruits = await fetchFruits();
 
-      console.log(fruits);
-
       dispatch(setFruits({ fruits }));
     } catch (error) {
       dispatch(setError({ error: error as Error }));
