@@ -1,0 +1,72 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install SSH Key
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Deploy to EC2 instance
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          # Navigate to the application directory, or clone the repository if it doesn't exist
+          if [ ! -d "/home/${{ secrets.EC2_USER }}/my-app" ]; then
+            git clone https://github.com/GeorgeOkarskyi/fruit-jar.git /home/${{ secrets.EC2_USER }}/fruit-app
+          fi
+          cd /home/${{ secrets.EC2_USER }}/fruit-app
+
+          # Pull the latest changes from the main branch
+          git checkout main
+          git pull origin main
+
+          # Create or update the .env file
+          echo "MIKRO_ORM_DB_NAME=${{ secrets.VITE_GET_FRUITS_PROXY_API_URL }}" > .env
+          echo "MIKRO_ORM_USER=${{ secrets.GET_FRUITS_API_URL }}" >> ./server/.env
+          echo "MIKRO_ORM_PASSWORD=${{ secrets.GET_FRUITS_API_PORT }}" >> ./server/.env
+
+          # Install ui dependencies
+          npm install
+
+          # Buid ui
+          npm run build
+
+          # Install server dependencies
+          cd ./server
+
+          # Start the application using PM2 or nohup so it runs in the background and doesn't block the SSH session
+          if ! [ -x "$(command -v pm2)" ]; then
+            sudo npm install pm2 -g
+          fi
+
+          # Start or restart the application with PM2 (background process manager)
+          pm2 restart "my-app" --name "my-app" -- run start
+
+          cd .. 
+          # Check if nginx is installed; if not, install it
+          if ! [ -x "$(command -v nginx)" ]; then
+            echo "Nginx not found. Installing Nginx..."
+            sudo yum update -y
+            sudo yum install nginx -y
+            sudo systemctl start nginx
+            sudo systemctl enable nginx
+          else
+            echo "Nginx is already installed."
+          fi
+
+          # Move the files to Nginx web root
+          sudo mv /home/${{ secrets.EC2_USER }}/fruit-app/dist/* /usr/share/nginx/html/
+
+          sudo systemctl restart nginx
+        EOF

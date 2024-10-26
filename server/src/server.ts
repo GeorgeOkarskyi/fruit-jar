@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/fruits', async (req, res) => {
-    const fruits = await fetch(`${process.env.VITE_GET_FRUITS_API_URL}`);
+    const fruits = await fetch(`${process.env.GET_FRUITS_API_URL}`);
     res.send(await fruits.json());
 });
 
