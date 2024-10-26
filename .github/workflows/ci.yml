@@ -32,9 +32,9 @@ jobs:
           git pull origin main
 
           # Create or update the .env file
-          echo "MIKRO_ORM_DB_NAME=${{ secrets.VITE_GET_FRUITS_PROXY_API_URL }}" > .env
-          echo "MIKRO_ORM_USER=${{ secrets.GET_FRUITS_API_URL }}" >> ./server/.env
-          echo "MIKRO_ORM_PASSWORD=${{ secrets.GET_FRUITS_API_PORT }}" >> ./server/.env
+          echo "VITE_GET_FRUITS_PROXY_API_URL=${{ secrets.VITE_GET_FRUITS_PROXY_API_URL }}" > .env
+          echo "GET_FRUITS_API_URL=${{ secrets.GET_FRUITS_API_URL }}" >> ./server/.env
+          echo "GET_FRUITS_API_PORT=${{ secrets.GET_FRUITS_API_PORT }}" >> ./server/.env
 
           # Install ui dependencies
           npm install
@@ -54,7 +54,8 @@ jobs:
           fi
 
           # Start or restart the application with PM2 (background process manager)
-          pm2 describe fruit-app > /dev/null 2>&1 && pm2 restart fruit-app || pm2 start npm --name "fruit-app" -- start
+          pm2 describe fruit-app/server > /dev/null 2>&1 && pm2 restart fruit-app/server || pm2 start npm --name "fruit-app/server" -- start
+
 
           cd .. 
           # Check if nginx is installed; if not, install it
@@ -72,6 +73,7 @@ jobs:
           if [ ! -d /usr/share/nginx/html ]; then
             sudo mkdir -p /usr/share/nginx/html
           fi
+
           sudo mv /home/${{ secrets.EC2_USER }}/fruit-app/dist/* /usr/share/nginx/html/
 
           sudo systemctl restart nginx
