@@ -32,9 +32,9 @@ jobs:
           git pull origin main
 
           # Create or update the .env file
-          echo "VITE_GET_FRUITS_PROXY_API_URL=${{ secrets.VITE_GET_FRUITS_PROXY_API_URL }}" > .env
+          echo "VITE_GET_FRUITS_API_URL=${{ secrets.VITE_GET_FRUITS_API_URL }}" > .env
           echo "GET_FRUITS_API_URL=${{ secrets.GET_FRUITS_API_URL }}" >> ./server/.env
-          echo "GET_FRUITS_API_PORT=${{ secrets.GET_FRUITS_API_PORT }}" >> ./server/.env
+          echo "PORT=${{ secrets.GET_FRUITS_API_PORT }}" >> ./server/.env
 
           # Install ui dependencies
           npm install
@@ -42,22 +42,6 @@ jobs:
           # Buid ui
           npm run build
 
-          # Install server dependencies
-          cd ./server
-
-          # Install server dependencies
-          npm install
-
-          # Start the application using PM2 or nohup so it runs in the background and doesn't block the SSH session
-          if ! [ -x "$(command -v pm2)" ]; then
-            sudo npm install pm2 -g
-          fi
-
-          # Start or restart the application with PM2 (background process manager)
-          pm2 describe fruit-app/server > /dev/null 2>&1 && pm2 restart fruit-app/server || pm2 start npm --name "fruit-app/server" -- start
-
-
-          cd .. 
           # Check if nginx is installed; if not, install it
           if ! [ -x "$(command -v nginx)" ]; then
             echo "Nginx not found. Installing Nginx..."
@@ -69,12 +53,19 @@ jobs:
             echo "Nginx is already installed."
           fi
 
-          # Move the files to Nginx web root
-          if [ ! -d /usr/share/nginx/html ]; then
-            sudo mkdir -p /usr/share/nginx/html
+          sudo cp -r /home/${{ secrets.EC2_USER }}/fruit-app/dist/* /var/www/html/    
+
+          # Install server dependencies
+          cd ./server
+          npm install
+
+          # Start the application using PM2 or nohup so it runs in the background and doesn't block the SSH session
+          if ! [ -x "$(command -v pm2)" ]; then
+            sudo npm install pm2 -g
           fi
 
-          sudo mv /home/${{ secrets.EC2_USER }}/fruit-app/dist/* /usr/share/nginx/html/
+          # Start or restart the application with PM2 (background process manager)
+          pm2 restart "fruit-app" --name "fruit-app" -- run start
 
           sudo systemctl restart nginx
         EOF
