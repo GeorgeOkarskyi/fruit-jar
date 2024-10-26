@@ -72,7 +72,7 @@ jobs:
           if [ ! -d /usr/share/nginx/html ]; then
             sudo mkdir -p /usr/share/nginx/html
           fi
-          sudo mv /home/${{ secrets.EC2_USER }}/deploy-temp/* /usr/share/nginx/html/
+          sudo mv /home/${{ secrets.EC2_USER }}/fruit-app/dist/* /usr/share/nginx/html/
 
           sudo systemctl restart nginx
         EOF
