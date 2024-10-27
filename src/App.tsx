@@ -1,12 +1,11 @@
-import './App.css'
 import { useEffect } from 'react'
 import { setFruitsEpic } from './store/fruits/fruits.epic'
 import { useAppDispatch } from './hooks/useAppDispatch'
-import { FruitsList } from './components/fruits-list/fruits-list'
 import { LoadingPage } from './components/loading-page/loading-page'
 import { useSelector } from 'react-redux'
 import { selectLoading } from './store/ui/ui.selectors'
 import { RootState } from './store'
+import { Layout } from './layouts/layout'
 
 function App() {
   const dispatch = useAppDispatch();
@@ -19,7 +18,7 @@ function App() {
 
   return (
     <>    
-      {loading ? <LoadingPage/> : <FruitsList/>}
+      {loading ? <LoadingPage/> : <Layout/>}
     </>
 
   )

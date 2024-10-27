@@ -1,10 +1,10 @@
 import { Fruit } from '../types/fruit-item';
 import { FruitArraySchema } from './validation.zod';
 import { z } from 'zod';
-import { DATA_VALIDATION_ERROR_MESSAGE, RETRY_FETCH_MESSAGE, RETRY_NUMBER, UNEXPECTED_ERROR_MESSAGE } from '../constants';
+import { DATA_VALIDATION_ERROR_MESSAGE, RETRY_FETCH_MESSAGE, REQUEST_RETRY_NUMBER, UNEXPECTED_ERROR_MESSAGE } from '../constants';
 import { ValidationError } from './errors.instances';
 
-export const fetchFruits = async (retries = RETRY_NUMBER): Promise<Fruit[]> => {
+export const fetchFruits = async (retries = REQUEST_RETRY_NUMBER): Promise<Fruit[]> => {
   try {
     const response = await fetch(`${import.meta.env.VITE_GET_FRUITS_API_URL}`);
 
