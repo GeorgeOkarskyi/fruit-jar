@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux"
-import { RootState } from "../../store"
 import { selectFruits, selectGroupBy, selectListType } from "../../store/fruits/fruits.selectors"
 import { GroupType, ViewType } from "../../configs/filters.config"
 import FruitListView from "./components/fruitsListView"
@@ -7,11 +5,12 @@ import FruitTableView from "./components/fruitsTableView"
 import Collapsible from "../colapsible/colapsible"
 import { groupFruits } from "../../utils/filtersUtils"
 import { useCallback, useMemo } from "react"
+import { useAppSelector } from "../../hooks/useAppSelector"
 
 export const FruitsContainer = () => {
-    const fruits = useSelector((store: RootState) => selectFruits(store));
-    const listType = useSelector((store: RootState) => selectListType(store));
-    const groupBy = useSelector((store: RootState) => selectGroupBy(store));
+    const fruits = useAppSelector(store => selectFruits(store));
+    const listType = useAppSelector(store => selectListType(store));
+    const groupBy = useAppSelector(store => selectGroupBy(store));
 
     const groupedFruits = useMemo(() => groupFruits(fruits, groupBy), [fruits, groupBy]);
 
