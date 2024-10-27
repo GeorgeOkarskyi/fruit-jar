@@ -1,4 +1,4 @@
-import { Option } from '../types/option';
+import { Option } from '../entities/option';
 import { enumToOptions } from '../utils/enumUtils';
 
 export enum ViewType {

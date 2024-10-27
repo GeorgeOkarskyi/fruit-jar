@@ -1,5 +1,5 @@
 import { GroupType } from "../configs/filters.config";
-import { Fruit } from "../types/fruit-item";
+import { Fruit } from "../entities/fruit-item";
 
 export function groupFruits(fruits: Fruit[], groupBy: GroupType): { [key: string]: Fruit[] } {
     if (groupBy === GroupType.None) {

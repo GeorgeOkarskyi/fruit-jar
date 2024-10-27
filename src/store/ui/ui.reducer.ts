@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { setLoading, setError } from "./ui.action";
+import { setLoading, setError } from "./ui.actions";
 import { IUIStore } from "./ui.types";
 
 const initialState: IUIStore = {

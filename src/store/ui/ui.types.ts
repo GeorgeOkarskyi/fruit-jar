@@ -1,4 +1,4 @@
-import { setError, setLoading } from "./ui.action";
+import { setError, setLoading } from "./ui.actions";
 
 export interface IUIStore {
     isLoading: boolean,

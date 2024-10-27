@@ -1,8 +1,8 @@
 import React from 'react';
-import { Fruit } from '../../types/fruit-item';
+import { Fruit } from '../../entities/fruit-item';
 
 interface IButtonProps {
-    onClick: (id: number) => void;
+    onClick: (fruit: Fruit) => void;
     item: Fruit;
     className?: string;
     label?: string;
@@ -17,7 +17,7 @@ const Button: React.FC<IButtonProps> = ({
     return (
         <button
             className={`btn btn-sm btn-primary ${className || ''}`}
-            onClick={() => onClick(item.id)}
+            onClick={() => onClick(item)}
         >
             {label || 'Add'}
         </button>

@@ -1,22 +1,23 @@
-import { selectFruits, selectGroupBy, selectListType } from "../../store/fruits/fruits.selectors"
+import { selectGroupBy, selectGroupedFruits, selectListType } from "../../store/fruits/fruits.selectors"
 import { GroupType, ViewType } from "../../configs/filters.config"
-import FruitListView from "./components/fruitsListView"
-import FruitTableView from "./components/fruitsTableView"
+import FruitList from "../fruits-list/fruits-list"
+import FruitTable from "../fruits-table/fruits-table";
 import Collapsible from "../colapsible/colapsible"
-import { groupFruits } from "../../utils/filtersUtils"
-import { useCallback, useMemo } from "react"
+import { useCallback } from "react"
 import { useAppSelector } from "../../hooks/useAppSelector"
+import { useAppDispatch } from "../../hooks/useAppDispatch"
+import { Fruit } from "../../entities/fruit-item"
+import { addFruitToJar } from "../../store/jar/jar.actions"
 
 export const FruitsContainer = () => {
-    const fruits = useAppSelector(store => selectFruits(store));
+    const dispatch = useAppDispatch();
     const listType = useAppSelector(store => selectListType(store));
     const groupBy = useAppSelector(store => selectGroupBy(store));
+    const groupedFruits = useAppSelector(store => selectGroupedFruits(store));
 
-    const groupedFruits = useMemo(() => groupFruits(fruits, groupBy), [fruits, groupBy]);
-
-    const onAdd = useCallback(() => {
-        //dispatch to Jar
-    }, [])
+    const onClickHandler = useCallback((fruit: Fruit) => {
+        dispatch(addFruitToJar({fruit}))
+    }, [dispatch])
 
     
     return <>
@@ -24,9 +25,9 @@ export const FruitsContainer = () => {
             <div key={group} className="mb-3 p-0">
                 <Collapsible title={group} isDisabled={groupBy === GroupType.None}>
                     {listType === ViewType.List ? (
-                        <FruitListView fruits={fruits} onAdd={onAdd} listType={listType}/>
+                        <FruitList fruits={fruits} onClick={onClickHandler}/>
                     ) : (
-                        <FruitTableView fruits={fruits} onAdd={onAdd} listType={listType}/>
+                        <FruitTable fruits={fruits} onClick={onClickHandler}/>
                     )}
                 </Collapsible>
             </div>
