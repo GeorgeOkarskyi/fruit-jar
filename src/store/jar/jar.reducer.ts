@@ -18,10 +18,10 @@ export const jarReducer = createReducer(initialState, (builder) => {
             }
         })
         .addCase(removeFruitFromJar, (state, action) => {
-            const existingJarItem = state.jarItems.find((item) => item.fruit.id === action.payload.fruit.id);
-
-            if(existingJarItem) {
-                existingJarItem.count--;
-            }
+            state.jarItems = state.jarItems.map((item) =>
+                item.fruit.id === action.payload.fruit.id
+                    ? { ...item, count: item.count - 1 }
+                    : item
+            ).filter(item => item.count > 0);
         })
 })

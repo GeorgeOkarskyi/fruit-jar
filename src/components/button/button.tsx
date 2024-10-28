@@ -16,7 +16,7 @@ const Button: React.FC<IButtonProps> = ({
 }) => {
     return (
         <button
-            className={`btn btn-sm btn-primary ${className || ''}`}
+            className={`btn btn-outline-primary ${className || ''}`}
             onClick={() => onClick(item)}
         >
             {label || 'Add'}

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../table-item/table-item.scss'
 
 interface TableProps {
     children: React.ReactNode;
@@ -7,16 +8,18 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ children, className, tableHeaders }) => (
-    <table className={`table ${className}`}>
-        <thead>
-            <tr>
-                {tableHeaders.map((header, index) => (<th key={header+index}>{header}</th>))}
-            </tr>
-        </thead>
-        <tbody>
-            {children}
-        </tbody>
-    </table>
+    <div className='table-responsive'>
+        <table className={`table table-hover ${className}`}>
+            <thead >
+                <tr>
+                    {tableHeaders.map((header, index) => (<th className='text-ellipsis' key={header+index}>{header}</th>))}
+                </tr>
+            </thead>
+            <tbody>
+                {children}
+            </tbody>
+        </table>
+    </div>
 );
 
 export default React.memo(Table);
