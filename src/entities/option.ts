@@ -6,11 +6,11 @@ interface IOptionParams {
 }
 
 export class Option {
-    public label: string;
-    public value: ViewType | GroupType;
+  public label: string;
+  public value: ViewType | GroupType;
 
-    constructor({ label, value }: IOptionParams) {
-        this.label = label;
-        this.value = value
-    }
+  constructor({ label, value }: IOptionParams) {
+    this.label = label;
+    this.value = value;
+  }
 }

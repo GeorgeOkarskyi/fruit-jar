@@ -16,20 +16,20 @@ export interface IFruitParams {
 }
 
 export class Fruit {
-    public name: string;
-    public id: number;
-    public family: string;
-    public order: string;
-    public genus: string;
-    public nutritions: INutritions;
+  public name: string;
+  public id: number;
+  public family: string;
+  public order: string;
+  public genus: string;
+  public nutritions: INutritions;
 
 
-    constructor({name, id, family, order, genus, nutritions}: IFruitParams) {
-        this.name = name;
-        this.id = id;
-        this.family = family;
-        this.order = order;
-        this.genus = genus;
-        this.nutritions = nutritions;
-    }
+  constructor({name, id, family, order, genus, nutritions}: IFruitParams) {
+    this.name = name;
+    this.id = id;
+    this.family = family;
+    this.order = order;
+    this.genus = genus;
+    this.nutritions = nutritions;
+  }
 }

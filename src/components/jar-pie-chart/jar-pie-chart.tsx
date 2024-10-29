@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { IJarItem } from '../../store/jar/jar.types';
 import { getUniqueColor } from '../../utils/chartUtils';
 
@@ -8,14 +9,16 @@ interface JarPieChartProps {
 }
 
 const JarPieChart: React.FC<JarPieChartProps> = ({ fruits }) => {
-  const processedData = useMemo(() => fruits.map((fruit) => ({
-    name: fruit.fruit.name,
-    calories: fruit.fruit.nutritions.calories * fruit.count,
-  })), [fruits]) 
+  const processedData: {name: string, calories: number}[] = useMemo(
+    () => 
+      fruits.map(({fruit, count}) => ({
+        name: fruit.name,
+        calories: fruit.nutritions.calories * count,
+      })), [fruits]); 
 
   return (
     <ResponsiveContainer width='100%' height='100%'>
-      <PieChart>
+      <PieChart aria-label="Fruit calorie distribution pie chart">
         <Pie
           data={processedData}
           dataKey="calories"
@@ -25,8 +28,12 @@ const JarPieChart: React.FC<JarPieChartProps> = ({ fruits }) => {
           outerRadius={100}
           label
         >
-          {fruits.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={getUniqueColor(index)}/>
+          {fruits.map(({fruit}, index) => (
+            <Cell 
+              key={`cell-${fruit.name}`} 
+              fill={getUniqueColor(index)} 
+              aria-label={`${fruit.name}: ${fruit.nutritions.calories} calories`}
+            />
           ))}
         </Pie>
         <Tooltip />

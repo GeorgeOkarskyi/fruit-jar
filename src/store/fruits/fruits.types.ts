@@ -1,6 +1,6 @@
-import { Fruit } from "../../entities/fruit-item";
 import { setFruits, updateActiveFilter } from "./fruits.actions";
-import { Option } from "../../entities/option"
+import { Fruit } from "../../entities/fruit-item";
+import { Option } from "../../entities/option";
 
 export interface IFruitsStore {
     fruits: Fruit[];

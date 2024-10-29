@@ -1,22 +1,22 @@
-import { GroupType } from "../configs/filters.config";
 import { Fruit } from "../entities/fruit-item";
+import { GroupType } from "../configs/filters.config";
 
 export function groupFruits(fruits: Fruit[], groupBy: GroupType): { [key: string]: Fruit[] } {
-    if (groupBy === GroupType.None) {
-        return { [GroupType.None]: fruits };
-    }
+  if (groupBy === GroupType.None) {
+    return { [GroupType.None]: fruits };
+  }
     
-    const propertyKey = groupBy?.toLowerCase() as keyof Fruit;
+  const propertyKey = groupBy?.toLowerCase() as keyof Fruit;
 
-    return fruits.reduce((groupedFruits, fruit) => {
-        const key = String(fruit[propertyKey]);
+  return fruits.reduce((groupedFruits, fruit) => {
+    const key = String(fruit[propertyKey]);
 
-        if (!groupedFruits[key]) {
-            groupedFruits[key] = [];
-        }
+    if (!groupedFruits[key]) {
+      groupedFruits[key] = [];
+    }
 
-        groupedFruits[key].push(fruit);
+    groupedFruits[key].push(fruit);
         
-        return groupedFruits;
-    }, {} as { [key: string]: Fruit[] });
+    return groupedFruits;
+  }, {} as { [key: string]: Fruit[] });
 }

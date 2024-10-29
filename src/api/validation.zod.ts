@@ -11,7 +11,7 @@ export const FruitSchema = z.object({
     fat: z.number(),
     sugar: z.number(),
     carbohydrates: z.number(),
-    protein: z.number()
+    protein: z.number(),
   }),
 });
 
