@@ -11,7 +11,7 @@ const HOST = process.env.HOST || 'http://localhost';
 app.use(cors());
 app.use(express.json());
 
-app.get('/fruits', async (req, res) => {
+app.get('/fruits', async (_req, res) => {
     const fruits = await fetch(`${process.env.GET_FRUITS_API_URL}`);
     res.send(await fruits.json());
 });

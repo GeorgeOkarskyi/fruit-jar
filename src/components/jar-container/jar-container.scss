@@ -13,12 +13,13 @@
 
 .jar-chart-container{
     padding-top: 70px;
+    transform: translate(0px, 20px);
 }
 
 .jar-calories {
     position: absolute;
     z-index: 1;
-    top: 185px;
+    top: 205px;
     left: 45%;
     transition: top 0.3s ease;
     color: $color-muted-yellow;
