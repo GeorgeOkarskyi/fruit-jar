@@ -10,7 +10,7 @@ interface JarListProps {
     fruits: IJarItem[];
     onRemove: (fruit: Fruit) => void;
     onAdd: (fruit: Fruit) => void;
-}
+};
 
 const JarList: React.FC<JarListProps> = ({ fruits, onRemove, onAdd }) => {    
     return (
