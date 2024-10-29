@@ -15,11 +15,11 @@ export const JarContainer: React.FC = () => {
 
     const onRemoveHandler = useCallback((fruit: Fruit) => {
         dispatch(removeFruitFromJar({ fruit }))
-    }, [dispatch])
+    }, [dispatch]);
 
     const onAddHandler = useCallback((fruit: Fruit) => {
         dispatch(addFruitToJar({ fruit }))
-    }, [dispatch])
+    }, [dispatch]);
 
     return <>
         <h2 className="text-center mt-2">Jar</h2>
