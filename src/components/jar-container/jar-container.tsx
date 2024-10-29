@@ -33,7 +33,7 @@ export const JarContainer: React.FC = () => {
         <div className="row h-50 jar-chart-container">
           <JarPieChart fruits={jarItems}/>
         </div>
-        <div className="scrollable row h-50 mx-5 d-flex align-items-end">
+        <div className="scrollable row h-50 mx-5 d-flex align-items-end mt-3">
           <JarList fruits={jarItems} onRemove={onRemoveHandler} onAdd={onAddHandler}/>
         </div>
       </div>

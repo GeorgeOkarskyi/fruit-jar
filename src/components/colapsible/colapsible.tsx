@@ -35,9 +35,6 @@ const Collapsible: React.FC<CollapsibleProps> = ({ title, children, isDisabled, 
       ref={contentRef}
       className={`collapsible__content ${className} ${isOpen ? 'show border' : ''}`}
       aria-hidden={!isOpen}
-      style={{
-        height: isOpen && contentRef.current ? `${contentRef.current.scrollHeight+1}px` : '0px',
-      }}
     >
       {children}
     </div>
