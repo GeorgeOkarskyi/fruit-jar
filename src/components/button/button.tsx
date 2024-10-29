@@ -1,6 +1,6 @@
-import React from 'react';
+import './button.scss';
 import { Fruit } from '../../entities/fruit-item';
-import './button.scss'
+import React from 'react';
 
 interface IButtonProps {
     onClick: (fruit: Fruit) => void;
@@ -10,19 +10,19 @@ interface IButtonProps {
 }
 
 const Button: React.FC<IButtonProps> = ({  
-    onClick,
-    item,
-    label,
-    className
+  onClick,
+  item,
+  label,
+  className,
 }) => {
-    return (
-        <button
-            className={`button ${className || ''}`}
-            onClick={() => onClick(item)}
-        >
-            {label || '+'}
-        </button>
-    );
+  return (
+    <button
+      className={`button ${className || ''}`}
+      onClick={() => onClick(item)}
+    >
+      {label || '+'}
+    </button>
+  );
 };
 
 export default React.memo(Button);

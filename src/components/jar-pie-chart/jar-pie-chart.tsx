@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { IJarItem } from '../../store/jar/jar.types';
 import { getUniqueColor } from '../../utils/chartUtils';
 
@@ -11,7 +12,7 @@ const JarPieChart: React.FC<JarPieChartProps> = ({ fruits }) => {
   const processedData = useMemo(() => fruits.map((fruit) => ({
     name: fruit.fruit.name,
     calories: fruit.fruit.nutritions.calories * fruit.count,
-  })), [fruits]) 
+  })), [fruits]); 
 
   return (
     <ResponsiveContainer width='100%' height='100%'>

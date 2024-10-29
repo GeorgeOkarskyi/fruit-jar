@@ -29,14 +29,14 @@ export enum Filters {
 }
 
 export const filtersConfig: iFiltersConfig[] = [
-    {
-        type: FilterType.Select,
-        label: Filters.Group,
-        options: enumToOptions(GroupType)
-    },
-    {
-        type: FilterType.Select,
-        label: Filters.View,
-        options: enumToOptions(ViewType)
-    }
-]
+  {
+    type: FilterType.Select,
+    label: Filters.Group,
+    options: enumToOptions(GroupType),
+  },
+  {
+    type: FilterType.Select,
+    label: Filters.View,
+    options: enumToOptions(ViewType),
+  },
+];

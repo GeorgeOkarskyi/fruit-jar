@@ -1,6 +1,6 @@
-import express from 'express'
-import cors from 'cors'
 import * as dotenv from 'dotenv';
+import cors from 'cors';
+import express from 'express';
 
 const app = express();
 dotenv.config();
@@ -12,8 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/fruits', async (_req, res) => {
-    const fruits = await fetch(`${process.env.GET_FRUITS_API_URL}`);
-    res.send(await fruits.json());
+  const fruits = await fetch(`${process.env.GET_FRUITS_API_URL}`);
+  res.send(await fruits.json());
 });
 
 app.listen(PORT, () => {
