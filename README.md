@@ -7,7 +7,7 @@
 - Fetches fruit data from an external API.
 - Displays fruits grouped by `Family`, `Order`, or `Genus` with collapsible headers.
 - Two view modes: **List** and **Table**.
-- Add fruits individually or by group to a "fruit jar".
+- Add fruits to a "fruit jar".
 - Calculates total calories of the fruits in the jar.
 - Pie chart to visualize the calorie distribution of the selected fruits.
 - Built with **React 18**, **Redux Toolkit**, and **React Query**.
@@ -62,3 +62,10 @@
   npm run preview
   ```
   Previews the production build using Vite's preview server.
+
+- **Start node server:**
+
+  ```bash
+  npm run start:server
+  ```
+  Starts the node server. 
