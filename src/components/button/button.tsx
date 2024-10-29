@@ -1,5 +1,6 @@
 import React from 'react';
 import { Fruit } from '../../entities/fruit-item';
+import './button.scss'
 
 interface IButtonProps {
     onClick: (fruit: Fruit) => void;
@@ -16,10 +17,10 @@ const Button: React.FC<IButtonProps> = ({
 }) => {
     return (
         <button
-            className={`btn btn-outline-primary ${className || ''}`}
+            className={`button ${className || ''}`}
             onClick={() => onClick(item)}
         >
-            {label || 'Add'}
+            {label || '+'}
         </button>
     );
 };

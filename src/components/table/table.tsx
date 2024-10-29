@@ -9,10 +9,10 @@ interface TableProps {
 
 const Table: React.FC<TableProps> = ({ children, className, tableHeaders }) => (
     <div className='table-responsive'>
-        <table className={`table table-hover ${className}`}>
+        <table className={`table table-hover ${className || ''}`}>
             <thead >
                 <tr>
-                    {tableHeaders.map((header, index) => (<th className='text-ellipsis' key={header+index}>{header}</th>))}
+                    {tableHeaders.map((header, index) => (<th className='text-ellipsis' key={header+index}><p>{header}</p></th>))}
                 </tr>
             </thead>
             <tbody>

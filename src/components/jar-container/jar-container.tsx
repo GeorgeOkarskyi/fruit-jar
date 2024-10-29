@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { Fruit } from "../../entities/fruit-item";
 import { addFruitToJar, removeFruitFromJar } from "../../store/jar/jar.actions";
 import JarPieChart from "../jar-pie-chart/jar-pie-chart";
+import './jar-container.scss'
 
 export const JarContainer: React.FC = () => {
     const dispatch = useAppDispatch()
@@ -20,9 +21,16 @@ export const JarContainer: React.FC = () => {
         dispatch(addFruitToJar({ fruit }))
     }, [dispatch])
 
-    return <div className="jar-container">
-        <h3>Calories: {jarCalories}</h3>
-        <JarList fruits={jarItems} onRemove={onRemoveHandler} onAdd={onAddHandler}/>
-        <JarPieChart fruits={jarItems}/>
-    </div>
+    return <>
+        <h2 className="text-center mt-2">Jar</h2>
+        <div className="container pb-5 jar-container">
+            {!!jarCalories && (<div className="jar-calories"><h4>{jarCalories} cal.</h4></div>)}
+            <div className="row h-50 jar-chart-container">
+                <JarPieChart fruits={jarItems}/>
+            </div>
+            <div className="scrollable row h-50 mx-5 d-flex align-items-end">
+                <JarList fruits={jarItems} onRemove={onRemoveHandler} onAdd={onAddHandler}/>
+            </div>
+        </div>
+    </>
 }
