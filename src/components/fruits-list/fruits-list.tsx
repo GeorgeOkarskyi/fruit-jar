@@ -17,8 +17,10 @@ const FruitList: React.FC<FruitListProps> = ({ fruits, onClick}) => (
         <p>
           {fruit.name} ({fruit.nutritions.calories} cal)
         </p>
-
-        <Button item={fruit} onClick={onClick}></Button>
+        <Button 
+          item={fruit} 
+          onClick={onClick}
+        />
       </ListItem>
     ))}
   </List>

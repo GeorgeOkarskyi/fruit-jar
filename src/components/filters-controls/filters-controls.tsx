@@ -9,7 +9,7 @@ import { useCallback } from "react";
 export const FilterControls: React.FC= () => { 
   const dispatch = useAppDispatch();
 
-  const onChange = useCallback(
+  const handleChange = useCallback(
     (label: string) => (value: string) => {
       dispatch(updateActiveFilter({ label, value: value as (ViewType | GroupType) }));
     },
@@ -18,7 +18,13 @@ export const FilterControls: React.FC= () => {
     
   return <div className="row px-2">
     {filtersConfig.map(({label, options}, i) => (
-      <Select key={label + i} options={options} label={label} onChange={onChange(label)} className="col-md-6 col-12 mb-3"></Select>
+      <Select 
+        key={label + i} 
+        options={options} 
+        label={label} 
+        onChange={handleChange(label)} 
+        className="col-md-6 col-12 mb-3"
+      />
     ))}
   </div>;
 };

@@ -12,15 +12,16 @@ interface IButtonProps {
 const Button: React.FC<IButtonProps> = ({  
   onClick,
   item,
-  label,
+  label = '+',
   className,
 }) => {
   return (
     <button
       className={`button ${className || ''}`}
       onClick={() => onClick(item)}
+      aria-label={`${label} ${item.name} to jar`}
     >
-      {label || '+'}
+      {label}
     </button>
   );
 };

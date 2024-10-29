@@ -6,7 +6,7 @@ interface ListProps {
 }
 
 const List: React.FC<ListProps> = ({ children, className }) => (
-  <ul className={`p-0 list-group ${className || ''}`}>
+  <ul className={`p-0 list-group ${className || ''}`} role="list">
     {children}
   </ul>
 );

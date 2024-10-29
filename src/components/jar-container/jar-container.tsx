@@ -23,16 +23,20 @@ export const JarContainer: React.FC = () => {
     dispatch(addFruitToJar({ fruit }));
   }, [dispatch]);
 
-  return <>
-    <h2 className="text-center mt-2">Jar</h2>
-    <div className="container pb-5 jar-container">
-      {!!jarCalories && (<div className="jar-calories"><h4>{jarCalories} cal.</h4></div>)}
-      <div className="row h-50 jar-chart-container">
-        <JarPieChart fruits={jarItems}/>
+  return (
+    <>
+      <h2 className="text-center mt-2" aria-label="Jar container title">Jar</h2>
+      <div className="container pb-5 jar-container">
+        {!!jarCalories && (
+          <div className="jar-calories"><h4>{jarCalories} cal.</h4></div>
+        )}
+        <div className="row h-50 jar-chart-container">
+          <JarPieChart fruits={jarItems}/>
+        </div>
+        <div className="scrollable row h-50 mx-5 d-flex align-items-end">
+          <JarList fruits={jarItems} onRemove={onRemoveHandler} onAdd={onAddHandler}/>
+        </div>
       </div>
-      <div className="scrollable row h-50 mx-5 d-flex align-items-end">
-        <JarList fruits={jarItems} onRemove={onRemoveHandler} onAdd={onAddHandler}/>
-      </div>
-    </div>
-  </>;
+    </>
+  );
 };

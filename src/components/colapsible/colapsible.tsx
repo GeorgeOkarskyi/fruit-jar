@@ -14,29 +14,32 @@ const Collapsible: React.FC<CollapsibleProps> = ({ title, children, isDisabled, 
 
   const toggleCollapse = () => setIsOpen((prev) => !prev);
 
+  if(isDisabled) {
+    return <>{children}</>;
+  }
+
   return <>
-    {isDisabled ? 
-      <>{children}</>:
-      <>
-        <div 
-          className={`d-flex justify-content-between align-items-center my-1 py-1 px-3 ${ isOpen ? 'rounded-top-4 mb-0': 'rounded-4'}  border`} 
-          onClick={toggleCollapse} 
-          style={{ cursor: 'pointer'}}
-        >
-          <h6 className='m-0'>{title}</h6>
-          <span>{isOpen ? '−' : '+'}</span>
-        </div>
-        <div 
-          style={{
-            height: isOpen && contentRef.current ? `${contentRef.current.scrollHeight+1}px` : '0px',
-          }}
-          ref={contentRef}
-          className={`collapsible__content ${className} ${isOpen ? 'show border' : ''}`}
-        >
-          {children}
-        </div>
-      </>
-    }
+    <div 
+      className={`d-flex justify-content-between align-items-center my-1 py-1 px-3 ${ isOpen ? 'rounded-top-4 mb-0': 'rounded-4'}  border`} 
+      onClick={toggleCollapse} 
+      role="button"
+      aria-expanded={isOpen}
+      tabIndex={0}
+      style={{ cursor: 'pointer'}}
+    >
+      <h6 className='m-0'>{title}</h6>
+      <span>{isOpen ? '−' : '+'}</span>
+    </div>
+    <div 
+      ref={contentRef}
+      className={`collapsible__content ${className} ${isOpen ? 'show border' : ''}`}
+      aria-hidden={!isOpen}
+      style={{
+        height: isOpen && contentRef.current ? `${contentRef.current.scrollHeight+1}px` : '0px',
+      }}
+    >
+      {children}
+    </div>
   </>;
 };
 

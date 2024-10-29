@@ -13,7 +13,11 @@ const Table: React.FC<TableProps> = ({ children, className, tableHeaders }) => (
     <table className={`table table-hover ${className || ''}`}>
       <thead >
         <tr>
-          {tableHeaders.map((header, index) => (<th className='text-ellipsis' key={header+index}><p>{header}</p></th>))}
+          {tableHeaders.map((header, index) => (
+            <th className='text-ellipsis' key={header+index} scope="col">
+              {header}
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody>

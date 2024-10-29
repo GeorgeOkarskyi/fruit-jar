@@ -10,32 +10,44 @@ interface FruitTableProps {
     onClick: (fruit: Fruit) => void;
 }
 
-const TABLE_HEADERS: string[] = ['Name', 'Family', 'Order', 'Genus', 'Calories', 'Action'];
+const TABLE_HEADERS = [
+  { key: 'name', label: 'Name' },
+  { key: 'family', label: 'Family' },
+  { key: 'order', label: 'Order' },
+  { key: 'genus', label: 'Genus' },
+  { key: 'calories', label: 'Calories' },
+  { key: 'action', label: 'Action' },
+];
 
 const FruitTable: React.FC<FruitTableProps> = ({ fruits, onClick }) => {
-  const tableRows = useMemo(() => 
-    fruits.map((fruit) => {
-      const { name, family, order, genus, nutritions: { calories } } = fruit;
+  const tableRows = useMemo(
+    () => 
+      fruits.map((fruit) => {
+        const { id, name, family, order, genus, nutritions: { calories } } = fruit;
 
-      return (
-        <TableItem
-          key={fruit.id}
-          tableData={[
-            name,
-            family,
-            order,
-            genus,
-            calories,
-            <Button key={`button-${fruit.id}`} item={fruit} onClick={() => onClick(fruit)} />,
-          ]}
-        />
-      );
-    }),
-  [fruits, onClick],
+        return (
+          <TableItem
+            key={id}
+            tableData={[
+              name,
+              family,
+              order,
+              genus,
+              calories,
+              <Button 
+                key={`button-${fruit.id}`} 
+                item={fruit} 
+                onClick={() => onClick(fruit)} 
+              />,
+            ]}
+          />
+        );
+      }),
+    [fruits, onClick],
   );
 
   return (
-    <Table tableHeaders={TABLE_HEADERS} className='p-3 m-0'>
+    <Table tableHeaders={TABLE_HEADERS.map(header => header.label)} className='p-3 m-0'>
       {tableRows}
     </Table>
   );

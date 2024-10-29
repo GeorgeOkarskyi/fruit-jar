@@ -17,7 +17,7 @@ export enum FilterType {
     Select = 'Select'
 }
 
-interface iFiltersConfig {
+interface IFiltersConfig {
     type: FilterType,
     label: string,
     options: Option[]
@@ -28,15 +28,15 @@ export enum Filters {
     View = 'View:'
 }
 
-export const filtersConfig: iFiltersConfig[] = [
+export const filtersConfig: IFiltersConfig[] = [
   {
     type: FilterType.Select,
     label: Filters.Group,
-    options: enumToOptions(GroupType),
+    options: enumToOptions<GroupType>(GroupType),
   },
   {
     type: FilterType.Select,
     label: Filters.View,
-    options: enumToOptions(ViewType),
+    options: enumToOptions<ViewType>(ViewType),
   },
 ];

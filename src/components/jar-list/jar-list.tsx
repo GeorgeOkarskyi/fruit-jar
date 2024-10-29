@@ -15,16 +15,25 @@ interface JarListProps {
 
 const JarList: React.FC<JarListProps> = ({ fruits, onRemove, onAdd }) => {    
   return (
-    <List className={'jar-list'}>
+    <List className='jar-list'>
       {fruits.map(({fruit, count}, index) =>  (
-        <ListItem key={fruit.name + index} className='bg-transparent'>
+        <ListItem key={fruit.id + index} className='bg-transparent'>
           <p className='list-item-text text-ellipsis'>
             {fruit.name} ({fruit.nutritions.calories} cal)
           </p>
           <div>
-            <Button item={fruit} onClick={onAdd} className='me-2'></Button>
+            <Button 
+              item={fruit} 
+              onClick={onAdd} 
+              className='me-2'
+            />
             <span>{count}</span>
-            <Button className='ms-2' item={fruit} onClick={onRemove} label='-'></Button>
+            <Button 
+              className='ms-2' 
+              item={fruit} 
+              onClick={onRemove} 
+              label='-'
+            />
           </div>
         </ListItem>
       ))}

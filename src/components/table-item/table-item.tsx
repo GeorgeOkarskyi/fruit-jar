@@ -9,7 +9,11 @@ interface ITableItemProps{
 
 const TableItem: React.FC<ITableItemProps> = ({ className, tableData }) => (
   <tr className={`table-light ${className || ''}`}>
-    {tableData.map((tableDataItem, index) => <td key={`td-${index}`} className="p-2 table-item-text text-ellipsis align-middle"><p>{tableDataItem}</p></td>)}
+    {tableData.map((tableDataItem, index) => (
+      <td key={`td-${index}`} className="p-2 table-item-text text-ellipsis align-middle">
+        {tableDataItem}
+      </td>
+    ))}
   </tr>
 );
 

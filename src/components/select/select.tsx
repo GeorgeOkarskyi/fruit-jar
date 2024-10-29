@@ -18,8 +18,11 @@ const Select: React.FC<SelectProps> = ({ label, value, onChange, options, classN
 
   return (    
     <div className={`${className} 'mb-3`}>
-      <label className="form-label ms-2">{label}</label>
+      <label htmlFor={label} className="form-label ms-2">
+        {label}
+      </label>
       <select
+        id={label}
         className="form-select"
         value={value}
         onChange={(e) => onChange(e.target.value)}
