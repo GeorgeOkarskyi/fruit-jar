@@ -34,7 +34,7 @@ const FruitTable: React.FC<FruitTableProps> = ({ fruits, onClick }) => {
     );
 
     return (
-        <Table tableHeaders={TABLE_HEADERS}>
+        <Table tableHeaders={TABLE_HEADERS} className='p-3 m-0'>
             {tableRows}
         </Table>
     )

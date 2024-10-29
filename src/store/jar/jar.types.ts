@@ -1,8 +1,8 @@
 import { Fruit } from "../../entities/fruit-item";
 
-interface IJarItem {
+export interface IJarItem {
     fruit: Fruit,
-    count: number
+    count: number,
 }
 
 export interface IJarStore {

@@ -5,6 +5,7 @@ import { LoadingPage } from './components/loading-page/loading-page'
 import { selectLoading } from './store/ui/ui.selectors'
 import { Layout } from './layouts/layout'
 import { useAppSelector } from './hooks/useAppSelector'
+import './App.scss';
 
 function App() {
   const dispatch = useAppDispatch();

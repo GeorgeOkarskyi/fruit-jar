@@ -1,0 +1,24 @@
+@use '../../styles/variables.scss' as *;
+
+.button {
+    background-color: $color-fresh-green;
+    color: #fff;
+    padding: $button-padding;
+    border-radius: $button-border-radius;
+    font-weight: $button-font-weight;
+    transition: $button-transition;
+  
+    &:hover {
+      background-color: $color-green-hover;
+      transform: scale(1.05);
+    }
+  
+    &--yellow {
+      background-color: $color-muted-yellow;
+  
+      &:hover {
+        background-color: $color-yellow-hover;
+      }
+    }
+  }
+  

@@ -10,12 +10,12 @@ interface FruitListProps {
 }
 
 const FruitList: React.FC<FruitListProps> = ({ fruits, onClick}) => (
-    <List className={'fruits-list'}>
+    <List>
         {fruits.map((fruit, index) =>  (
-            <ListItem key={fruit.name + index}>
-                <span>
+            <ListItem key={fruit.name + index} className='list-item'>
+                <p>
                     {fruit.name} ({fruit.nutritions.calories} cal)
-                </span>
+                </p>
 
                 <Button item={fruit} onClick={onClick}></Button>
             </ListItem>

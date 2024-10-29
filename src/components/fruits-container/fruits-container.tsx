@@ -19,18 +19,15 @@ export const FruitsContainer = () => {
         dispatch(addFruitToJar({fruit}))
     }, [dispatch])
 
-    
-    return <>
+    return <div className="scrollable">
         {Object.entries(groupedFruits).map(([group, fruits]) => (
-            <div key={group} className="mb-3 p-0">
-                <Collapsible title={group} isDisabled={groupBy === GroupType.None}>
-                    {listType === ViewType.List ? (
-                        <FruitList fruits={fruits} onClick={onClickHandler}/>
-                    ) : (
-                        <FruitTable fruits={fruits} onClick={onClickHandler}/>
-                    )}
-                </Collapsible>
-            </div>
+            <Collapsible key={group} title={group} isDisabled={groupBy === GroupType.None} className={`${listType !== ViewType.List && 'border-bottom-0'}`}>
+                {listType === ViewType.List ? (
+                    <FruitList fruits={fruits} onClick={onClickHandler}/>
+                ) : (
+                    <FruitTable fruits={fruits} onClick={onClickHandler}/>
+                )}
+            </Collapsible>
         ))}
-    </>
+    </div>
 }

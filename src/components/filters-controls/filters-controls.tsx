@@ -14,7 +14,7 @@ export const FilterControls: React.FC= () => {
         [dispatch]
     );
     
-    return <div className="row">
+    return <div className="row px-2">
         {filtersConfig.map(({label, options}, i) => (
             <Select key={label + i} options={options} label={label} onChange={onChange(label)} className="col-md-6 col-12 mb-3"></Select>
         ))}

@@ -1,0 +1,22 @@
+$color-primary-bg: #FAF9F6;
+$color-fresh-green: #A2D5AB;
+$color-muted-yellow: #FFC857;
+$color-warm-brown: #8E806A;
+$color-dark-olive: #40531B;
+
+$font-family-primary: 'Roboto', sans-serif;
+$font-size-header-desktop: 24px;
+$font-size-header-mobile: 20px;
+$font-size-body-desktop: 16px;
+$font-size-body-mobile: 14px;
+
+$color-primary-text: $color-dark-olive;
+$color-secondary-text: $color-warm-brown;
+
+$button-padding: 2px 10px;
+$button-border-radius: 50%;
+$button-font-weight: bold;
+$button-transition: 0.3s ease-in-out;
+
+$color-green-hover: darken($color-fresh-green, 10%);
+$color-yellow-hover: darken($color-muted-yellow, 10%);

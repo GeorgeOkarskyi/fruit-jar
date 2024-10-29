@@ -1,4 +1,5 @@
 import React from "react";
+import './table-item.scss'
 
 interface ITableItemProps{
     className?: string;
@@ -6,8 +7,8 @@ interface ITableItemProps{
 };
 
 const TableItem: React.FC<ITableItemProps> = ({ className, tableData }) => (
-    <tr className={`table-light ${className}`}>
-        {tableData.map((tableDataItem, index) => <td key={`td-${index}`} className="p-3">{tableDataItem}</td>)}
+    <tr className={`table-light ${className || ''}`}>
+        {tableData.map((tableDataItem, index) => <td key={`td-${index}`} className="p-2 table-item-text text-ellipsis align-middle"><p>{tableDataItem}</p></td>)}
     </tr>
 );
 
