@@ -23,15 +23,13 @@ const JarList: React.FC<JarListProps> = ({ fruits, onRemove, onAdd }) => {
           </p>
           <div>
             <Button 
-              item={fruit} 
-              onClick={onAdd} 
+              onClick={() => onAdd(fruit)} 
               className='me-2'
             />
             <span>{count}</span>
             <Button 
               className='ms-2' 
-              item={fruit} 
-              onClick={onRemove} 
+              onClick={() => onRemove(fruit)} 
               label='-'
             />
           </div>
