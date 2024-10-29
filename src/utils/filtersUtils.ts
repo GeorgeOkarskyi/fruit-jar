@@ -1,7 +1,11 @@
 import { Fruit } from "../entities/fruit-item";
 import { GroupType } from "../configs/filters.config";
 
-export function groupFruits(fruits: Fruit[], groupBy: GroupType): { [key: string]: Fruit[] } {
+export interface IGroupFilter {
+    [key: string]: Fruit[]
+}
+
+export function groupFruits(fruits: Fruit[], groupBy: GroupType): IGroupFilter {
   if (groupBy === GroupType.None) {
     return { [GroupType.None]: fruits };
   }

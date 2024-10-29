@@ -1,25 +1,22 @@
 import './button.scss';
-import { Fruit } from '../../entities/fruit-item';
 import React from 'react';
 
 interface IButtonProps {
-    onClick: (fruit: Fruit) => void;
-    item: Fruit;
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
     className?: string;
     label?: string;
 }
 
 const Button: React.FC<IButtonProps> = ({  
   onClick,
-  item,
   label = '+',
-  className,
+  className = '',
 }) => {
   return (
     <button
-      className={`button ${className || ''}`}
-      onClick={() => onClick(item)}
-      aria-label={`${label} ${item.name} to jar`}
+      className={`button ${className}`}
+      onClick={onClick}
+      aria-label={label}
     >
       {label}
     </button>

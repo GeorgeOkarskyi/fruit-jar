@@ -35,8 +35,7 @@ const FruitTable: React.FC<FruitTableProps> = ({ fruits, onClick }) => {
               genus,
               calories,
               <Button 
-                key={`button-${fruit.id}`} 
-                item={fruit} 
+                key={`button-${fruit.id}`}
                 onClick={() => onClick(fruit)} 
               />,
             ]}

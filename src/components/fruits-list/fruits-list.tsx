@@ -7,7 +7,7 @@ import ListItem from '../list-item/list-item';
 
 interface FruitListProps {
     fruits: Fruit[];
-    onClick: (fruit: Fruit) => void;
+    onClick: (item: Fruit) => void;
 }
 
 const FruitList: React.FC<FruitListProps> = ({ fruits, onClick}) => (
@@ -17,9 +17,8 @@ const FruitList: React.FC<FruitListProps> = ({ fruits, onClick}) => (
         <p>
           {fruit.name} ({fruit.nutritions.calories} cal)
         </p>
-        <Button 
-          item={fruit} 
-          onClick={onClick}
+        <Button
+          onClick={() => onClick(fruit)}
         />
       </ListItem>
     ))}
