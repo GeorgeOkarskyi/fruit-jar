@@ -1,11 +1,13 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit"
 import { fruitsReducer } from "./fruits/fruits.reducer"
 import { uiReducer } from "./ui/ui.reducer";
+import { jarReducer } from "./jar/jar.reducer";
 
 const store = configureStore({
     reducer: {
         ui: uiReducer,
         fruits: fruitsReducer,
+        jar: jarReducer
     },
 });
 

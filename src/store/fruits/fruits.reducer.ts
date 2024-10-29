@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { IFruitsStore } from "./fruits.types";
-import { setFruits, updateActiveFilter } from "./fruits.action";
+import { setFruits, updateActiveFilter } from "./fruits.actions";
 
 const initialState: IFruitsStore = {
     fruits: [],

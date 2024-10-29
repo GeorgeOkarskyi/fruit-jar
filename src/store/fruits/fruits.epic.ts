@@ -1,7 +1,7 @@
 import { AppThunk } from "../index";
 import { fetchFruits } from "../../api/fruits.api";
-import { setError, setLoading } from "../ui/ui.action";
-import { setFruits } from "./fruits.action";
+import { setError, setLoading } from "../ui/ui.actions";
+import { setFruits } from "./fruits.actions";
 
 export const setFruitsEpic = (): AppThunk => async (dispatch) => {
     dispatch(setLoading({ isLoading: true }));

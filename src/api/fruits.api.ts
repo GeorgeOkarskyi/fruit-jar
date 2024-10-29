@@ -1,4 +1,4 @@
-import { Fruit } from '../types/fruit-item';
+import { Fruit } from '../entities/fruit-item';
 import { FruitArraySchema } from './validation.zod';
 import { z } from 'zod';
 import { DATA_VALIDATION_ERROR_MESSAGE, RETRY_FETCH_MESSAGE, REQUEST_RETRY_NUMBER, UNEXPECTED_ERROR_MESSAGE } from '../constants';

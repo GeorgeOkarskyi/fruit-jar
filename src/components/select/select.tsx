@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Option } from '../../types/option'
+import { Option } from '../../entities/option'
 import React from 'react';
 
 interface SelectProps {

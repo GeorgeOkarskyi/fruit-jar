@@ -1,7 +1,7 @@
 import { filtersConfig, GroupType, ViewType } from "../../configs/filters.config";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import Select from "../select/select";
-import { updateActiveFilter } from "../../store/fruits/fruits.action";
+import { updateActiveFilter } from "../../store/fruits/fruits.actions";
 import { useCallback } from "react";
 
 export const FilterControls: React.FC= () => { 
